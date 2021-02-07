@@ -91,4 +91,9 @@ describe("Props", () => {
       wrapper.vm.$props.sections[0].contacts[0].name
     );
   });
+  test("The props sections was set to with two sections with the props contacts two objects with companyName so .pc-contacts__section-contact-company-name should be render and contain this value", () => {
+    expect(
+      wrapper.find(".pc-contacts__section-contact-company-name").text()
+    ).toBe(wrapper.vm.$props.sections[0].contacts[0].companyName);
+  });
 });

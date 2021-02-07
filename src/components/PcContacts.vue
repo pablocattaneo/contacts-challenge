@@ -15,6 +15,9 @@
           <span class="pc-contacts__section-contact-name">{{
             contact.name
           }}</span>
+          <span class="pc-contacts__section-contact-company-name">{{
+            contact.companyName
+          }}</span>
         </li>
       </ul>
     </div>
