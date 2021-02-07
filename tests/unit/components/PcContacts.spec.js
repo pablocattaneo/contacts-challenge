@@ -3,7 +3,22 @@ import PcContacts from "@/components/PcContacts";
 
 let wrapper;
 beforeEach(() => {
-  wrapper = shallowMount(PcContacts);
+  wrapper = shallowMount(PcContacts, {
+    propsData: {
+      sections: [
+        {
+          id: 1,
+          title: "FAVORITE CONTACTS",
+          contacts: []
+        },
+        {
+          id: 2,
+          title: "OTHER CONTACTS",
+          contacts: []
+        }
+      ]
+    }
+  });
 });
 
 test("Sanity test", () => {
@@ -19,5 +34,19 @@ describe("Component is well formed", () => {
 describe("Props", () => {
   test("The component is well formed so prop sections should exist", () => {
     expect(wrapper.props()).toHaveProperty("sections");
+  });
+  test("The props sections was set to with two sections so two sections should be rendered", () => {
+    expect(wrapper.findAll(".pc-contacts__section")).toHaveLength(2);
+  });
+  test("The props sections was set to with two sections with the props title so two .pc-contacts__section-title should be rendered with this values", () => {
+    const firstSection = 0;
+    const secondSection = 0;
+    const sectionsTitles = wrapper.findAll(".pc-contacts__section-title");
+    expect(sectionsTitles.at(firstSection).text()).toContain(
+      wrapper.vm.$props.sections[firstSection].title
+    );
+    expect(sectionsTitles.at(secondSection).text()).toContain(
+      wrapper.vm.$props.sections[secondSection].title
+    );
   });
 });
