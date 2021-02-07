@@ -9,3 +9,9 @@ beforeEach(() => {
 test("Sanity test", () => {
   expect(true).toBe(true);
 });
+
+describe("Props", () => {
+  test("The component is well formed so prop sections should exist", () => {
+    expect(wrapper.props()).toHaveProperty("sections");
+  });
+});

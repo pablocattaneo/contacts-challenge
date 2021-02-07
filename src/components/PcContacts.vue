@@ -3,7 +3,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    sections: {
+      type: Array,
+      default: () => []
+    }
+  }
+};
 </script>
 
 <style></style>
