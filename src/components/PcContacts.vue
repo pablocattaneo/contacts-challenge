@@ -1,5 +1,5 @@
 <template>
-  <div class="PcContacts"></div>
+  <div class="pc-contacts"></div>
 </template>
 
 <script>
