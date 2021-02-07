@@ -23,7 +23,7 @@ beforeEach(() => {
               defaultImage: "",
               name: "Gustavo Cerati",
               id: "2",
-              companyName: "Soda Stereo",
+              companyName: "",
               isFavorite: true
             }
           ]
@@ -95,5 +95,28 @@ describe("Props", () => {
     expect(
       wrapper.find(".pc-contacts__section-contact-company-name").text()
     ).toBe(wrapper.vm.$props.sections[0].contacts[0].companyName);
+  });
+  test("The props sections was set to with a sections with the props contacts the second objects with companyName set to empty string so .pc-contacts__section-contact-company-name should NOT be render.", async () => {
+    await wrapper.setProps({
+      sections: [
+        {
+          id: 1,
+          title: "FAVORITE CONTACTS",
+          contacts: [
+            {
+              smallImageURL: "",
+              defaultImage: "",
+              name: "Jhon Lennon",
+              id: "1",
+              companyName: "",
+              isFavorite: true
+            }
+          ]
+        }
+      ]
+    });
+    expect(
+      wrapper.find(".pc-contacts__section-contact-company-name").exists()
+    ).toBe(false);
   });
 });
