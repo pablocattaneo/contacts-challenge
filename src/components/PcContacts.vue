@@ -6,6 +6,13 @@
       class="pc-contacts__section"
     >
       <h1 class="pc-contacts__section-title">{{ section.title }}</h1>
+      <ul>
+        <li
+          v-for="contact in section.contacts"
+          :key="contact.id"
+          class="pc-contacts__section-contact"
+        ></li>
+      </ul>
     </div>
   </div>
 </template>

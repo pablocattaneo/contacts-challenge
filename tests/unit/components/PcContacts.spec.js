@@ -9,12 +9,46 @@ beforeEach(() => {
         {
           id: 1,
           title: "FAVORITE CONTACTS",
-          contacts: []
+          contacts: [
+            {
+              smallImageURL: "",
+              defaultImage: "",
+              name: "Jhon Lennon",
+              id: "1",
+              companyName: "Apple Corps",
+              isFavorite: true
+            },
+            {
+              smallImageURL: "",
+              defaultImage: "",
+              name: "Gustavo Cerati",
+              id: "2",
+              companyName: "",
+              isFavorite: true
+            }
+          ]
         },
         {
           id: 2,
           title: "OTHER CONTACTS",
-          contacts: []
+          contacts: [
+            {
+              smallImageURL: "",
+              defaultImage: "",
+              name: "Miss Piggy",
+              id: "3",
+              companyName: "Muppets, Bab",
+              isFavorite: false
+            },
+            {
+              smallImageURL: "",
+              defaultImage: "",
+              name: "Winnie-the-Pooh",
+              id: "4",
+              companyName: "",
+              isFavorite: false
+            }
+          ]
         }
       ]
     }
@@ -48,5 +82,8 @@ describe("Props", () => {
     expect(sectionsTitles.at(secondSection).text()).toContain(
       wrapper.vm.$props.sections[secondSection].title
     );
+  });
+  test("The props sections was set to with two sections with the props contacts so two .pc-contacts__section-contact should be rendered with this values", () => {
+    expect(wrapper.findAll(".pc-contacts__section-contact")).toHaveLength(4);
   });
 });
