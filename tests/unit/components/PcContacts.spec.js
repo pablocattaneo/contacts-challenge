@@ -23,7 +23,7 @@ beforeEach(() => {
               defaultImage: "",
               name: "Gustavo Cerati",
               id: "2",
-              companyName: "",
+              companyName: "Soda Stereo",
               isFavorite: true
             }
           ]
@@ -85,5 +85,10 @@ describe("Props", () => {
   });
   test("The props sections was set to with two sections with the props contacts so two .pc-contacts__section-contact should be rendered with this values", () => {
     expect(wrapper.findAll(".pc-contacts__section-contact")).toHaveLength(4);
+  });
+  test("The props sections was set to with two sections with the props contacts two objects with name so .pc-contacts__section-contact-name should be render and contain this value", () => {
+    expect(wrapper.find(".pc-contacts__section-contact-name").text()).toBe(
+      wrapper.vm.$props.sections[0].contacts[0].name
+    );
   });
 });

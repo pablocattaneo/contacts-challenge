@@ -11,7 +11,11 @@
           v-for="contact in section.contacts"
           :key="contact.id"
           class="pc-contacts__section-contact"
-        ></li>
+        >
+          <span class="pc-contacts__section-contact-name">{{
+            contact.name
+          }}</span>
+        </li>
       </ul>
     </div>
   </div>
