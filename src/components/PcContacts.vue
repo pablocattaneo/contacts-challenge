@@ -17,6 +17,11 @@
             :srcset="smallImage(contact.smallImageURL)"
             alt=""
           />
+          <span
+            v-if="contact.isFavorite"
+            class="pc-contacts__section-contact-favorite"
+            >⭐</span
+          >
           <span class="pc-contacts__section-contact-name">{{
             contact.name
           }}</span>

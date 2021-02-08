@@ -195,6 +195,87 @@ describe("Props", () => {
         wrapper.find(".pc-contacts__section-contact-img").attributes("srcset")
       ).toBe(wrapper.vm.$props.sections[0].contacts[0].smallImageURL);
     });
+
+    test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should be rendered", () => {
+      wrapper = shallowMount(PcContacts, {
+        ...requiredProps,
+        propsData: {
+          sections: [
+            {
+              id: 1,
+              title: "FAVORITE CONTACTS",
+              contacts: [
+                {
+                  smallImageURL: "https://my-server/user-small.jpg",
+                  defaultImage: "",
+                  name: "Jhon Lennon",
+                  id: "1",
+                  companyName: "Apple Corps",
+                  isFavorite: true
+                }
+              ]
+            }
+          ]
+        }
+      });
+      expect(
+        wrapper.find(".pc-contacts__section-contact-favorite").exists()
+      ).toBe(true);
+    });
+
+    test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should NOT be rendered", () => {
+      wrapper = shallowMount(PcContacts, {
+        ...requiredProps,
+        propsData: {
+          sections: [
+            {
+              id: 1,
+              title: "FAVORITE CONTACTS",
+              contacts: [
+                {
+                  smallImageURL: "https://my-server/user-small.jpg",
+                  defaultImage: "",
+                  name: "Jhon Lennon",
+                  id: "1",
+                  companyName: "Apple Corps",
+                  isFavorite: false
+                }
+              ]
+            }
+          ]
+        }
+      });
+      expect(
+        wrapper.find(".pc-contacts__section-contact-favorite").exists()
+      ).toBe(false);
+    });
+
+    test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should be rendered with ⭐ as text", () => {
+      wrapper = shallowMount(PcContacts, {
+        ...requiredProps,
+        propsData: {
+          sections: [
+            {
+              id: 1,
+              title: "FAVORITE CONTACTS",
+              contacts: [
+                {
+                  smallImageURL: "https://my-server/user-small.jpg",
+                  defaultImage: "",
+                  name: "Jhon Lennon",
+                  id: "1",
+                  companyName: "Apple Corps",
+                  isFavorite: true
+                }
+              ]
+            }
+          ]
+        }
+      });
+      expect(
+        wrapper.find(".pc-contacts__section-contact-favorite").text()
+      ).toBe("⭐");
+    });
   });
 
   describe("defaultContactImage", () => {
