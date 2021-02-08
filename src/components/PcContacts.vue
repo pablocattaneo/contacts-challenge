@@ -42,6 +42,12 @@ export default {
           e => e.id && e.title && Array.isArray(e.contacts)
         );
       }
+    },
+    defaultContactImage: {
+      type: Object,
+      validator: function(defaultContactImage) {
+        return defaultContactImage.every(e => e.default);
+      }
     }
   },
   computed: {
