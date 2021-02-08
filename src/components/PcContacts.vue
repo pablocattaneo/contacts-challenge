@@ -38,6 +38,31 @@ export default {
         );
       }
     }
+  },
+  watch: {
+    sections() {
+      this.orderSectionAlphabetically();
+    }
+  },
+  methods: {
+    orderSectionAlphabetically() {
+      for (const section of this.sections) {
+        section.contacts.sort(function(a, b) {
+          const nameA = a.name.toUpperCase();
+          const nameB = b.name.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+  },
+  created() {
+    this.orderSectionAlphabetically();
   }
 };
 </script>

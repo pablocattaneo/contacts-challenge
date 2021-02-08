@@ -23,7 +23,7 @@ beforeEach(() => {
               defaultImage: "",
               name: "Gustavo Cerati",
               id: "2",
-              companyName: "",
+              companyName: "Soda Stereo",
               isFavorite: true
             }
           ]
@@ -118,5 +118,49 @@ describe("Props", () => {
     expect(
       wrapper.find(".pc-contacts__section-contact-company-name").exists()
     ).toBe(false);
+  });
+  test("The props sections was set to with a sections with the props contacts the objects with name Jhon Lennon, Gustavo Cerati and B.B. King so 3 .pc-contacts__section-contact-name should be render alphabetically, ", () => {
+    wrapper = shallowMount(PcContacts, {
+      propsData: {
+        sections: [
+          {
+            id: 1,
+            title: "FAVORITE CONTACTS",
+            contacts: [
+              {
+                smallImageURL: "",
+                defaultImage: "",
+                name: "Jhon Lennon",
+                id: "1",
+                companyName: "Apple Corps",
+                isFavorite: true
+              },
+              {
+                smallImageURL: "",
+                defaultImage: "",
+                name: "Gustavo Cerati",
+                id: "2",
+                companyName: "",
+                isFavorite: true
+              },
+              {
+                smallImageURL: "",
+                defaultImage: "",
+                name: "B.B. King",
+                id: "5",
+                companyName: "Blues Corp",
+                isFavorite: true
+              }
+            ]
+          }
+        ]
+      }
+    });
+    const sectionsContactName = wrapper.findAll(
+      ".pc-contacts__section-contact-name"
+    );
+    expect(sectionsContactName.at(0).text()).toBe("B.B. King");
+    expect(sectionsContactName.at(1).text()).toBe("Gustavo Cerati");
+    expect(sectionsContactName.at(2).text()).toBe("Jhon Lennon");
   });
 });
