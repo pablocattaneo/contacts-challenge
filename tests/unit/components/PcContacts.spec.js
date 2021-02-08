@@ -1,9 +1,13 @@
 import { shallowMount } from "@vue/test-utils";
 import PcContacts from "@/components/PcContacts";
 
+const requiredProps = {
+  defaultContactImage: { default: "@/assets/user/default.jpg" }
+};
 let wrapper;
 beforeEach(() => {
   wrapper = shallowMount(PcContacts, {
+    ...requiredProps,
     propsData: {
       sections: [
         {
@@ -123,6 +127,7 @@ describe("Props", () => {
     test("The props sections was set to with a sections with the props contacts the objects with name Jhon Lennon, Gustavo Cerati and B.B. King so 3 .pc-contacts__section-contact-name should be render alphabetically, ", () => {
       wrapper = shallowMount(PcContacts, {
         propsData: {
+          requiredProps,
           sections: [
             {
               id: 1,
@@ -166,6 +171,7 @@ describe("Props", () => {
     });
     test("The props sections was set to with a sections with the props contacts with the first object with smallImageURL https://my-server/user-small.jpg so component .pc-contacts__section-contact-img should be rendered with img srcset attribute with that value.", () => {
       wrapper = shallowMount(PcContacts, {
+        ...requiredProps,
         propsData: {
           sections: [
             {
@@ -194,6 +200,39 @@ describe("Props", () => {
   describe("defaultContactImage", () => {
     test("The component is well formed so prop defaultContactImage should exist", () => {
       expect(wrapper.props()).toHaveProperty("defaultContactImage");
+    });
+    test('The props defaultContactImage was set to {default: "@/assets/user/default.jpg} so .pc-contacts__section-contact-img should be render with srcset attribute set to that value', async () => {
+      wrapper = shallowMount(PcContacts, {
+        ...requiredProps,
+        propsData: {
+          sections: [
+            {
+              id: 1,
+              title: "FAVORITE CONTACTS",
+              contacts: [
+                {
+                  smallImageURL: "",
+                  defaultImage: "",
+                  name: "Jhon Lennon",
+                  id: "1",
+                  companyName: "Apple Corps",
+                  isFavorite: true
+                }
+              ]
+            }
+          ],
+          defaultContactImage: {
+            default: "@/assets/user/default.jpg",
+            x2: "@/assets/user/default.jpg@x2",
+            x3: "@/assets/user/default.jpg@x3"
+          }
+        }
+      });
+      expect(
+        wrapper.find(".pc-contacts__section-contact-img").attributes("srcset")
+      ).toBe(
+        "@/assets/user/default.jpg,@/assets/user/default.jpg@x2,@/assets/user/default.jpg@x3"
+      );
     });
   });
 });

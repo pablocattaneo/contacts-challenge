@@ -14,7 +14,7 @@
         >
           <img
             class="pc-contacts__section-contact-img"
-            :srcset="contact.smallImageURL"
+            :srcset="smallImage(contact.smallImageURL)"
             alt=""
           />
           <span class="pc-contacts__section-contact-name">{{
@@ -46,7 +46,7 @@ export default {
     defaultContactImage: {
       type: Object,
       validator: function(defaultContactImage) {
-        return defaultContactImage.every(e => e.default);
+        return defaultContactImage?.default;
       }
     }
   },
@@ -67,6 +67,14 @@ export default {
         });
       }
       return sections;
+    }
+  },
+  methods: {
+    smallImage(ImageURL) {
+      const defaultImage = this.defaultContactImage
+        ? Object.values(this.defaultContactImage).join()
+        : "";
+      return ImageURL || defaultImage;
     }
   }
 };
