@@ -163,4 +163,29 @@ describe("Props", () => {
     expect(sectionsContactName.at(1).text()).toBe("Gustavo Cerati");
     expect(sectionsContactName.at(2).text()).toBe("Jhon Lennon");
   });
+  test("The props sections was set to with a sections with the props contacts with the first object with smallImageURL https://my-server/user-small.jpg so component .pc-contacts__section-contact-img should be rendered with img srcset attribute with that value.", () => {
+    wrapper = shallowMount(PcContacts, {
+      propsData: {
+        sections: [
+          {
+            id: 1,
+            title: "FAVORITE CONTACTS",
+            contacts: [
+              {
+                smallImageURL: "https://my-server/user-small.jpg",
+                defaultImage: "",
+                name: "Jhon Lennon",
+                id: "1",
+                companyName: "Apple Corps",
+                isFavorite: true
+              }
+            ]
+          }
+        ]
+      }
+    });
+    expect(
+      wrapper.find(".pc-contacts__section-contact-img").attributes("srcset")
+    ).toBe(wrapper.vm.$props.sections[0].contacts[0].smallImageURL);
+  });
 });

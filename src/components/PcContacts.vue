@@ -12,6 +12,11 @@
           :key="contact.id"
           class="pc-contacts__section-contact"
         >
+          <img
+            class="pc-contacts__section-contact-img"
+            :srcset="contact.smallImageURL"
+            alt=""
+          />
           <span class="pc-contacts__section-contact-name">{{
             contact.name
           }}</span>
