@@ -1,7 +1,7 @@
 <template>
   <div class="pc-contacts">
     <div
-      v-for="section in sections"
+      v-for="section in sectionsOrderedAlphabetically"
       :key="section.id"
       class="pc-contacts__section"
     >
@@ -39,13 +39,9 @@ export default {
       }
     }
   },
-  watch: {
-    sections() {
-      this.orderSectionAlphabetically();
-    }
-  },
-  methods: {
-    orderSectionAlphabetically() {
+  computed: {
+    sectionsOrderedAlphabetically() {
+      const sections = [...this.sections];
       for (const section of this.sections) {
         section.contacts.sort(function(a, b) {
           const nameA = a.name.toUpperCase();
@@ -59,10 +55,8 @@ export default {
           return 0;
         });
       }
+      return sections;
     }
-  },
-  created() {
-    this.orderSectionAlphabetically();
   }
 };
 </script>
