@@ -6,7 +6,7 @@
       :key="section.id"
       class="pc-contacts__section"
     >
-      <h1 class="pc-contacts__section-title">{{ section.title }}</h1>
+      <h2 class="pc-contacts__section-title">{{ section.title }}</h2>
       <ul>
         <li
           v-for="contact in section.contacts"
@@ -98,7 +98,11 @@ export default {
   .pc-contacts__title
     border-bottom: 1px solid #ececec
     background-color: #F9F9F9
-    font-size: 16px
+    font-size: 18px
     text-align: center
-    padding: 25px 0 15px
+    padding: 25px 0 12px
+  .pc-contacts__section-title
+    background-color: #f4f4f4
+    font-size: 14px
+    padding: 8px 15px
 </style>
