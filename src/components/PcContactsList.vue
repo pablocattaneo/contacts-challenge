@@ -91,4 +91,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="sass" scoped>
+.pc-contacts
+  color: #34353b
+  border: 1px solid #ececec
+  .pc-contacts__title
+    border-bottom: 1px solid #ececec
+    background-color: #F9F9F9
+    font-size: 16px
+    text-align: center
+    padding: 25px 0 15px
+</style>
