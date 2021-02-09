@@ -1,5 +1,6 @@
 <template>
   <div class="pc-contacts">
+    <h1 class="pc-contacts__title">{{ titleContactList }}</h1>
     <div
       v-for="section in sectionsOrderedAlphabetically"
       :key="section.id"
@@ -40,6 +41,10 @@
 <script>
 export default {
   props: {
+    titleContactList: {
+      type: String,
+      default: "Contacts"
+    },
     sections: {
       type: Array,
       required: true,

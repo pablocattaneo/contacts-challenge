@@ -316,6 +316,15 @@ describe("Props", () => {
       );
     });
   });
+
+  describe("titleContactList", () => {
+    test("The component is well formed so prop titleContactList should exist", () => {
+      expect(wrapper.props()).toHaveProperty("titleContactList");
+    });
+    test("titleContactList was NO set, so .pc-contacts__title should be render with the text Contacts as default", () => {
+      expect(wrapper.find(".pc-contacts__title").text()).toBe("Contacts");
+    });
+  });
 });
 
 describe("Events", () => {
