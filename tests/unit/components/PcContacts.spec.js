@@ -317,3 +317,15 @@ describe("Props", () => {
     });
   });
 });
+
+describe("Events", () => {
+  test("The element .pc-contacts__section-contact trigger click event so event contactWasSelected should be trigger", async () => {
+    const firstSection = 0;
+    const firstContact = 0;
+    await wrapper.find(".pc-contacts__section-contact").trigger("click");
+    expect(wrapper.emitted("contactWasSelected")).toHaveLength(1);
+    expect(wrapper.emitted("contactWasSelected")[0]).toEqual([
+      wrapper.vm.$props.sections[firstSection].contacts[firstContact]
+    ]);
+  });
+});

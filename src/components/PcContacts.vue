@@ -11,6 +11,7 @@
           v-for="contact in section.contacts"
           :key="contact.id"
           class="pc-contacts__section-contact"
+          @click="$emit('contactWasSelected', contact)"
         >
           <img
             class="pc-contacts__section-contact-img"
