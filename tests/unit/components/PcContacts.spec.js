@@ -1,12 +1,12 @@
 import { shallowMount } from "@vue/test-utils";
-import PcContacts from "@/components/PcContacts";
+import PcContactsList from "@/components/PcContactsList";
 
 const requiredProps = {
   defaultContactImage: { default: "@/assets/user/default.jpg" }
 };
 let wrapper;
 beforeEach(() => {
-  wrapper = shallowMount(PcContacts, {
+  wrapper = shallowMount(PcContactsList, {
     ...requiredProps,
     propsData: {
       sections: [
@@ -125,7 +125,7 @@ describe("Props", () => {
       ).toBe(false);
     });
     test("The props sections was set to with a sections with the props contacts the objects with name Jhon Lennon, Gustavo Cerati and B.B. King so 3 .pc-contacts__section-contact-name should be render alphabetically, ", () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         propsData: {
           requiredProps,
           sections: [
@@ -170,7 +170,7 @@ describe("Props", () => {
       expect(sectionsContactName.at(2).text()).toBe("Jhon Lennon");
     });
     test("The props sections was set to with a sections with the props contacts with the first object with smallImageURL https://my-server/user-small.jpg so component .pc-contacts__section-contact-img should be rendered with img srcset attribute with that value.", () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         ...requiredProps,
         propsData: {
           sections: [
@@ -197,7 +197,7 @@ describe("Props", () => {
     });
 
     test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should be rendered", () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         ...requiredProps,
         propsData: {
           sections: [
@@ -224,7 +224,7 @@ describe("Props", () => {
     });
 
     test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should NOT be rendered", () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         ...requiredProps,
         propsData: {
           sections: [
@@ -251,7 +251,7 @@ describe("Props", () => {
     });
 
     test("The props sections was set with a sections with the props contacts wich the first object has the property isFavorite set to true so elemnt .pc-contacts__section-contact-favorite should be rendered with ⭐ as text", () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         ...requiredProps,
         propsData: {
           sections: [
@@ -283,7 +283,7 @@ describe("Props", () => {
       expect(wrapper.props()).toHaveProperty("defaultContactImage");
     });
     test('The props defaultContactImage was set to {default: "@/assets/user/default.jpg} so .pc-contacts__section-contact-img should be render with srcset attribute set to that value', async () => {
-      wrapper = shallowMount(PcContacts, {
+      wrapper = shallowMount(PcContactsList, {
         ...requiredProps,
         propsData: {
           sections: [
