@@ -54,10 +54,13 @@ export default {
         );
       }
     },
-    defaultContactImage: {
-      type: Object,
-      validator: function(defaultContactImage) {
-        return defaultContactImage?.default;
+    defaultContactImages: {
+      type: Array,
+      validator: function(defaultContactImages) {
+        const isAString = e => typeof e === "string";
+        return (
+          defaultContactImages.length && defaultContactImages.every(isAString)
+        );
       }
     }
   },
@@ -82,10 +85,10 @@ export default {
   },
   methods: {
     smallImage(ImageURL) {
-      const defaultImage = this.defaultContactImage
-        ? Object.values(this.defaultContactImage).join()
+      const defaultContactImages = this.defaultContactImages?.length
+        ? this.defaultContactImages.join(" ,")
         : "";
-      return ImageURL || defaultImage;
+      return ImageURL || defaultContactImages;
     }
   }
 };

@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import PcContactsList from "@/components/PcContactsList";
 
 const requiredProps = {
-  defaultContactImage: { default: "@/assets/user/default.jpg" }
+  defaultContactImages: ["@/assets/user/default.jpg"]
 };
 let wrapper;
 beforeEach(() => {
@@ -278,11 +278,11 @@ describe("Props", () => {
     });
   });
 
-  describe("defaultContactImage", () => {
-    test("The component is well formed so prop defaultContactImage should exist", () => {
-      expect(wrapper.props()).toHaveProperty("defaultContactImage");
+  describe("defaultContactImages", () => {
+    test("The component is well formed so prop defaultContactImages should exist", () => {
+      expect(wrapper.props()).toHaveProperty("defaultContactImages");
     });
-    test('The props defaultContactImage was set to {default: "@/assets/user/default.jpg} so .pc-contacts__section-contact-img should be render with srcset attribute set to that value', async () => {
+    test('The props defaultContactImages was set to {default: "@/assets/user/default.jpg} so .pc-contacts__section-contact-img should be render with srcset attribute set to that value', async () => {
       wrapper = shallowMount(PcContactsList, {
         propsData: {
           ...requiredProps,
@@ -302,17 +302,17 @@ describe("Props", () => {
               ]
             }
           ],
-          defaultContactImage: {
-            default: "@/assets/user/default.jpg",
-            x2: "@/assets/user/default.jpg@x2",
-            x3: "@/assets/user/default.jpg@x3"
-          }
+          defaultContactImages: [
+            "/assets/user/default.jpg",
+            "/assets/user/default.jpg@x2 x2",
+            "/assets/user/default.jpg@x3 x3"
+          ]
         }
       });
       expect(
         wrapper.find(".pc-contacts__section-contact-img").attributes("srcset")
       ).toBe(
-        "@/assets/user/default.jpg,@/assets/user/default.jpg@x2,@/assets/user/default.jpg@x3"
+        "/assets/user/default.jpg ,/assets/user/default.jpg@x2 x2 ,/assets/user/default.jpg@x3 x3"
       );
     });
   });
